@@ -1,0 +1,7 @@
+# GIT related files
+\.git
+.gitignore
+.gitmodules
+README.*
+
+# vim:ft=perl

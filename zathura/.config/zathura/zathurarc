@@ -1,0 +1,27 @@
+
+# Recolor page to fit dark theme
+set recolor-darkcolor "#F8F8F1"
+set recolor-lightcolor "#2E3436"
+set recolor true
+
+# Status bar and document
+set statusbar-bg "#282828"
+set statusbar-fg "#fbf1c7"
+set default-bg "#282828"
+set default-fg "#fbf1c7"
+
+# Highlights style
+set highlight-transparency 0.2
+set highlight-color "#CC241D"
+set highlight-active-color "#FADB2F"
+
+# Document navigation
+map [fullscreen] <Tab> toggle_index
+map [fullscreen] j scroll down
+map [fullscreen] k scroll up
+
+# zoom
+set zoom-step 20
+set scroll-step 80
+map <C-i> zoom in
+map <C-o> zoom out
