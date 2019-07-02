@@ -193,6 +193,12 @@ set list listchars=eol:↲,tab:⋄∙,trail:¬,extends:→,precedes:←,nbsp:␣
 set path+=**
 set wildmenu
 
+" NetRW file manager settings (built-in)
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+
 " EasyMotion plug-in mappings
 " Move to {char}{char}
 nmap <Leader>s <Plug>(easymotion-overwin-f2)
