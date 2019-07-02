@@ -167,8 +167,21 @@ set laststatus=2    " Always display the statusline in all windows
 set showtabline=2   " Always display the tabline, even if there is only one tab
 set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" Map TAB to 4 spaces
+" Toggle TAB to 4 spaces
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" allow toggling between local and default mode
+function TabToggle()
+  if &expandtab
+    set softtabstop=4
+    set noexpandtab
+    echo "  TAB character mode"
+  else
+    set softtabstop=0
+    set expandtab
+    echo "  4-Spaces mode"
+  endif
+endfunction
+nmap <Leader>tt mz:execute TabToggle()<CR>'z
 
 " Use system clipboard
 set clipboard=unnamed
