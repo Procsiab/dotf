@@ -33,6 +33,8 @@ call vundle#end()
 filetype plugin indent on
 
 " Theme specific settings
+set t_Co=256
+set encoding=utf-8
 syntax on
 set cursorline
 set relativenumber
@@ -90,16 +92,26 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['README.md'] = ' '
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Makefile'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.drone.yml'] = 'ﳣ '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.git'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitmodules'] = ' '
 
+" NerdTree Git plug-in specific settings
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : " ",
+    \ "Staged"    : " ",
+    \ "Untracked" : " ",
+    \ "Renamed"   : "ﱴ ",
+    \ "Unmerged"  : "𥉉",
+    \ "Deleted"   : " ",
+    \ "Dirty"     : " ",
+    \ "Clean"     : " ",
+    \ 'Ignored'   : " ",
+    \ "Unknown"   : " "
+    \ }
+
 " Airline settings
-set t_Co=256
-set encoding=utf-8
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
@@ -140,7 +152,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.paste = ' '
 let g:airline_symbols.spell = ' '
 let g:airline_symbols.notexists = ' '
-let g:airline_symbols.dirty=' '
+let g:airline_symbols.dirty=' '
 let g:airline_symbols.whitespace = 'Ξ'
 
 " ALE linting setup
