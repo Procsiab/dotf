@@ -189,6 +189,10 @@ set clipboard=unnamed
 " Show hidden characters
 set list listchars=eol:↲,tab:⋄∙,trail:¬,extends:→,precedes:←,nbsp:␣
 
+" Recursive fuzzy file search
+set path+=**
+set wildmenu
+
 " EasyMotion plug-in mappings
 " Move to {char}{char}
 nmap <Leader>s <Plug>(easymotion-overwin-f2)
