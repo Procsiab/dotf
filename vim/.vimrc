@@ -16,6 +16,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
 
 " Utilities
 Plugin 'terryma/vim-multiple-cursors'
@@ -174,6 +175,12 @@ set clipboard=unnamed
 
 " Show hidden characters
 set list listchars=eol:↲,tab:⋄∙,trail:¬,extends:→,precedes:←,nbsp:␣
+
+" EasyMotion plug-in mappings
+" Move to {char}{char}
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
+" Move to word
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Remap CTRL + ←/→ to switch between tabs
 nnoremap <C-Left> :tabprevious<CR>
