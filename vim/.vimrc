@@ -43,7 +43,6 @@ set number
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'soft'
 let g:gruvbox_improved_warnings = 1
 
 " Spell checking
@@ -152,8 +151,8 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.paste = ' '
 let g:airline_symbols.spell = ' '
-let g:airline_symbols.notexists = ' '
-let g:airline_symbols.dirty=' '
+let g:airline_symbols.notexists = '  '
+let g:airline_symbols.dirty='  '
 let g:airline_symbols.whitespace = 'Ξ'
 
 " ALE linting setup
@@ -169,7 +168,6 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the st
 
 " Toggle TAB to 4 spaces
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-" allow toggling between local and default mode
 function TabToggle()
   if &expandtab
     set softtabstop=4
@@ -183,8 +181,22 @@ function TabToggle()
 endfunction
 nmap <Leader>tt mz:execute TabToggle()<CR>'z
 
+" Toggle line numbers
+function NumToggle()
+  if &relativenumber
+    set norelativenumber
+    set nonumber
+    echo "  Line numbers hidden"
+  else
+    set relativenumber
+    set number
+    echo "  Line numbers visible"
+  endif
+endfunction
+nmap <Leader>nn mz:execute NumToggle()<CR>'z
+
 " Use system clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Show hidden characters
 set list listchars=eol:↲,tab:⋄∙,trail:¬,extends:→,precedes:←,nbsp:␣
