@@ -71,8 +71,6 @@ if [[ ! -f ~/.zpm/zpm.zsh ]]; then
   git clone --recursive https://github.com/horosgrisa/zpm ~/.zpm
 fi
 source ~/.zpm/zpm.zsh
-zpm load zsh-users/zsh-autosuggestions
-zpm load zsh-users/zsh-syntax-highlighting
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -86,9 +84,10 @@ plugins=(
   thefuck
   vundle
   vi-mode
+  zsh-syntax-highlighting
 )
 
-# ZSH Plugin Manager
+# ZSH Theme Minimal
 if [[ ! -f ~/.oh-my-zsh/custom/themes/subnixr/minimal.zsh ]]; then
   git clone https://github.com/subnixr/minimal.git ~/.oh-my-zsh/custom/themes/subnixr
 fi
