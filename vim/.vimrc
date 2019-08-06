@@ -43,7 +43,6 @@ set number
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_italic = 1
-let g:gruvbox_improved_warnings = 1
 
 " Spell checking
 setlocal spell
