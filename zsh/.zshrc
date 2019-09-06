@@ -143,3 +143,9 @@ function git_prepare() {
 }
 zle -N git_prepare
 bindkey "^g" git_prepare
+
+# Function to generate printable random bytes
+function ndascii() {
+	if [ -z $1 ]; then 1=10; fi
+	tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
+}
