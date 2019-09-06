@@ -40,9 +40,21 @@ syntax on
 set cursorline
 set relativenumber
 set number
-set background=dark
 colorscheme gruvbox
 let g:gruvbox_italic = 1
+
+" Toggle night mode
+function NightModeToggle()
+	let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
+	if theme_name[1:-3] == 'Adwaita'
+		set background=light
+		highlight Normal ctermfg=black ctermbg=white
+	else
+		set background=dark
+	endif
+endfunction
+nmap <Leader>nm mz:execute NightModeToggle()<CR>'z
+call NightModeToggle()
 
 " Spell checking
 setlocal spell
@@ -168,29 +180,29 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the st
 " Toggle TAB to 4 spaces
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 function TabToggle()
-  if &expandtab
-    set softtabstop=4
-    set noexpandtab
-    echo "  TAB character mode"
-  else
-    set softtabstop=0
-    set expandtab
-    echo "  4-Spaces mode"
-  endif
+	if &expandtab
+		set softtabstop=4
+		set noexpandtab
+		echo "  TAB character mode"
+	else
+		set softtabstop=0
+		set expandtab
+		echo "  4-Spaces mode"
+	endif
 endfunction
 nmap <Leader>tt mz:execute TabToggle()<CR>'z
 
 " Toggle line numbers
 function NumToggle()
-  if &relativenumber
-    set norelativenumber
-    set nonumber
-    echo "  Line numbers hidden"
-  else
-    set relativenumber
-    set number
-    echo "  Line numbers visible"
-  endif
+	if &relativenumber
+		set norelativenumber
+		set nonumber
+		echo "  Line numbers hidden"
+	else
+		set relativenumber
+		set number
+		echo "  Line numbers visible"
+	endif
 endfunction
 nmap <Leader>nn mz:execute NumToggle()<CR>'z
 
