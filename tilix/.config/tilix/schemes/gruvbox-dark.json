@@ -31,5 +31,5 @@
     "use-bold-color": false,
     "use-cursor-color": false,
     "use-highlight-color": false,
-    "use-theme-colors": false
+    "use-theme-colors": true
 }
