@@ -48,7 +48,9 @@ function NightModeToggle()
 	let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
 	if theme_name[1:-3] == 'Adwaita'
 		set background=light
-		highlight Normal ctermfg=black ctermbg=white
+		highlight Normal ctermfg=black ctermbg=256
+		highlight CursorLine ctermbg=255
+		highlight CursorLineNr ctermbg=255
 	else
 		set background=dark
 	endif
