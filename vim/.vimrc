@@ -242,10 +242,6 @@ nnoremap <C-l> :ALENext<CR>
 nnoremap <S-l> :ALEPrevious<CR>
 
 " Remap <leader>l + 1, 2, … to spell languages
-nnoremap <leader>l0 :set spelllang=it,en_gb<CR>:echo " All languages enabled"<CR>
-nnoremap <leader>l1 :set spelllang=it<CR>:echo " Language is 'Italian'"<CR>
-nnoremap <leader>l2 :set spelllang=en_gb<CR>:echo " Language is 'English (GB)'"<CR>
-
-" Remap CTRL + F shortcuts for inkscape figures
-inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/../img/"'<CR><CR>:w<CR>
-nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/../img/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+nnoremap <leader>l0 :set spelllang=it,en_gb<CR>:echo "  All languages enabled"<CR>
+nnoremap <leader>l1 :set spelllang=it<CR>:echo "  Language is 'Italian'"<CR>
+nnoremap <leader>l2 :set spelllang=en_gb<CR>:echo "  Language is 'English (GB)'"<CR>
