@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Rofi color theme
+
+   File: steel-dark.rasi
+   Desc: Grey based dark theme
+   Author: Procsiab
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: false;
+
+    /* Gruvbox dark colors */
+    dark-bg0:          #2E3436;
+    dark-bg0-soft:     #32302f;
+    dark-bg3:          #665c54;
+    dark-fg0:          #F8F8F2;
+    dark-fg1:          #ebdbb2;
+    dark-red-dark:     #cc241d;
+    dark-red-light:    #fb4934;
+    dark-yellow-dark:  #d79921;
+    dark-yellow-light: #fabd2f;
+    dark-gray:         #a89984;
+
+    /* Theme colors */
+    background:                  @dark-bg0;
+    background-color:            @background;
+    foreground:                  @dark-fg1;
+    border-color:                @dark-gray;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @dark-bg0-soft;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @dark-bg3;
+    selected-normal-foreground:  @dark-fg0;
+
+    active-background:           @dark-yellow-dark;
+    active-foreground:           @background;
+    alternate-active-background: @background;
+    alternate-active-foreground: @foreground;
+    selected-active-background:  @dark-yellow-light;
+    selected-active-foreground:  @foreground;
+
+    urgent-background:           @dark-red-dark;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @dark-red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+
+@import "steel-common.rasi"
+
