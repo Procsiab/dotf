@@ -149,3 +149,13 @@ function ndascii() {
 	if [ -z $1 ]; then 1=10; fi
 	tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
 }
+
+# Fix rofi calls for wayland, and apply correct theme
+function get_rofi_theme() {
+    if [[ "$(gsettings get org.gnome.desktop.interface gtk-theme)" == "'Adwaita'" ]]; then
+        echo "steel-light"
+    else
+        echo "steel-dark"
+    fi
+}
+alias rofi='rofi -normal-window -theme $(get_rofi_theme)'
