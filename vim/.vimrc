@@ -17,6 +17,7 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'atweiden/vim-betterdigraphs'
 
 " Utilities
 Plugin 'terryma/vim-multiple-cursors'
@@ -24,6 +25,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-startify'
+Plugin 'atweiden/vim-dragvisuals'
 
 " LaTeX plugins
 Plugin 'lervag/vimtex'
@@ -55,13 +57,55 @@ function NightModeToggle()
 		set background=dark
 	endif
 endfunction
-nmap <Leader>nm mz:execute NightModeToggle()<CR>'z
+nmap <Leader>nm mz;execute NightModeToggle()<CR>'z
 call NightModeToggle()
 
 " Spell checking
 setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+"====[Damien Conway's VIM addons]====
+
+"====[Highlight the 80 column limit on overflowing character]
+highlight ColorColumn ctermbg=grey ctermfg=black
+call matchadd('ColorColumn', '\%81v', 100)
+
+"====[Blink current search match match in red]
+highlight WhiteOnRed ctermbg=red ctermfg=black
+
+function! HLNext (blinktime)
+let [bufnum, lnum, col, off] = getpos('.')
+let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+let target_pat = '\c\%#'.@/
+let ring = matchadd('WhiteOnRed', target_pat, 101)
+redraw
+exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+call matchdelete(ring)
+redraw
+endfunction
+
+nnoremap <silent> n n;call HLNext(0.3)<cr>
+nnoremap <silent> N N;call HLNext(0.3)<cr>
+
+"====[Swap ; and : (useful on English keyboard layout)]
+nnoremap  ;  :
+
+"====[Swap visual mode with visual block]
+nnoremap    v  <C-V>
+nnoremap <C-V>    v
+vnoremap    v  <C-V>
+vnoremap <C-V>    v
+
+"====[Remap CTRL+K to betterdigraphs plugin]
+inoremap <expr> <C-K> BDG_GetDigraph()
+
+"====[Mappings for the dragvisuals plugin]
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
 
 " Vimtex specific settings
 let g:tex_flavor='latex'
@@ -192,7 +236,7 @@ function TabToggle()
 		echo "  4-Spaces mode"
 	endif
 endfunction
-nmap <Leader>tt mz:execute TabToggle()<CR>'z
+nmap <Leader>tt mz;execute TabToggle()<CR>'z
 
 " Toggle line numbers
 function NumToggle()
@@ -206,7 +250,7 @@ function NumToggle()
 		echo "  Line numbers visible"
 	endif
 endfunction
-nmap <Leader>nn mz:execute NumToggle()<CR>'z
+nmap <Leader>nn mz;execute NumToggle()<CR>'z
 
 " Use system clipboard
 set clipboard=unnamedplus
@@ -231,17 +275,17 @@ nmap <Leader>s <Plug>(easymotion-overwin-f2)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Remap CTRL + ←/→ to switch between tabs
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-Left> ;tabprevious<CR>
+nnoremap <C-Right> ;tabnext<CR>
 
 " Remap CTRL + t to toggle NerdTree plugin
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-t> ;NERDTreeToggle<CR>
 
 " Remap CTRL + l, SHIFT + l to go to next/previous ALE warning/error
-nnoremap <C-l> :ALENext<CR>
-nnoremap <S-l> :ALEPrevious<CR>
+nmap <Leader>an ;ALENext<CR>
+nmap <Leader>aN ;ALEPrevious<CR>
 
 " Remap <leader>l + 1, 2, … to spell languages
-nnoremap <leader>l0 :set spelllang=it,en_gb<CR>:echo "  All languages enabled"<CR>
-nnoremap <leader>l1 :set spelllang=it<CR>:echo "  Language is 'Italian'"<CR>
-nnoremap <leader>l2 :set spelllang=en_gb<CR>:echo "  Language is 'English (GB)'"<CR>
+nnoremap <leader>l0 ;set spelllang=it,en_gb<CR>;echo "  All languages enabled"<CR>
+nnoremap <leader>l1 ;set spelllang=it<CR>;echo "  Language is 'Italian'"<CR>
+nnoremap <leader>l2 ;set spelllang=en_gb<CR>;echo "  Language is 'English (GB)'"<CR>
