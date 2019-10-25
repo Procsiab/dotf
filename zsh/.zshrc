@@ -21,7 +21,7 @@ function taskwarrior {
         eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %}
     done
     eval RESET='%{$reset_color%}'
-    _OVERDUE=$(task due.before:today status:pending count)
+    _OVERDUE=$(task +OVERDUE count)
     _DUETODAY=$(task +TODAY count)
     _DUETOMRW=$(task +TOMORROW count)
     _PENDING=$(task status:pending count)
