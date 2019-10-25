@@ -57,7 +57,7 @@ function NightModeToggle()
 		set background=dark
 	endif
 endfunction
-nmap <Leader>nm mz;execute NightModeToggle()<CR>'z
+nmap <Leader>nm mz:execute NightModeToggle()<CR>'z
 call NightModeToggle()
 
 " Spell checking
@@ -85,10 +85,10 @@ call matchdelete(ring)
 redraw
 endfunction
 
-nnoremap <silent> n n;call HLNext(0.3)<cr>
-nnoremap <silent> N N;call HLNext(0.3)<cr>
+nnoremap <silent> n n:call HLNext(0.3)<cr>
+nnoremap <silent> N N:call HLNext(0.3)<cr>
 
-"====[Swap ; and : (useful on English keyboard layout)]
+"====[Remap ; on : (useful on English keyboard layout)]
 nnoremap  ;  :
 
 "====[Swap visual mode with visual block]
@@ -236,7 +236,7 @@ function TabToggle()
 		echo "  4-Spaces mode"
 	endif
 endfunction
-nmap <Leader>tt mz;execute TabToggle()<CR>'z
+nmap <Leader>tt mz:execute TabToggle()<CR>'z
 
 " Toggle line numbers
 function NumToggle()
@@ -250,7 +250,7 @@ function NumToggle()
 		echo "  Line numbers visible"
 	endif
 endfunction
-nmap <Leader>nn mz;execute NumToggle()<CR>'z
+nmap <Leader>nn mz:execute NumToggle()<CR>'z
 
 " Use system clipboard
 set clipboard=unnamedplus
@@ -275,17 +275,17 @@ nmap <Leader>s <Plug>(easymotion-overwin-f2)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Remap CTRL + ←/→ to switch between tabs
-nnoremap <C-Left> ;tabprevious<CR>
-nnoremap <C-Right> ;tabnext<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
 " Remap CTRL + t to toggle NerdTree plugin
-nnoremap <C-t> ;NERDTreeToggle<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 " Remap CTRL + l, SHIFT + l to go to next/previous ALE warning/error
-nmap <Leader>an ;ALENext<CR>
-nmap <Leader>aN ;ALEPrevious<CR>
+nmap <Leader>an :ALENext<CR>
+nmap <Leader>aN :ALEPrevious<CR>
 
 " Remap <leader>l + 1, 2, … to spell languages
-nnoremap <leader>l0 ;set spelllang=it,en_gb<CR>;echo "  All languages enabled"<CR>
-nnoremap <leader>l1 ;set spelllang=it<CR>;echo "  Language is 'Italian'"<CR>
-nnoremap <leader>l2 ;set spelllang=en_gb<CR>;echo "  Language is 'English (GB)'"<CR>
+nnoremap <leader>l0 :set spelllang=it,en_gb<CR>:echo "  All languages enabled"<CR>
+nnoremap <leader>l1 :set spelllang=it<CR>:echo "  Language is 'Italian'"<CR>
+nnoremap <leader>l2 :set spelllang=en_gb<CR>:echo "  Language is 'English (GB)'"<CR>
