@@ -184,6 +184,7 @@ let g:airline#extensions#branch#format = 2
 
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#tabs_label = 'tab'
 let g:airline#extensions#tabline#buffers_label = 'buf'
@@ -220,7 +221,7 @@ let g:ale_sign_error = 'ﱥ '
 
 " Setup for bottom bar plugin
 set laststatus=2    " Always display the statusline in all windows
-set showtabline=2   " Always display the tabline, even if there is only one tab
+set showtabline=1   " Show the tabline  if there is more than one tab
 set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Toggle TAB to 4 spaces
