@@ -21,10 +21,10 @@ function taskwarrior {
         eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %}
     done
     eval RESET='%{$reset_color%}'
-    _OVERDUE=$(task +OVERDUE count)
-    _DUETODAY=$(task +TODAY count)
-    _DUETOMRW=$(task +TOMORROW count)
-    _PENDING=$(task status:pending count)
+    _OVERDUE=$(task +READY +OVERDUE count)
+    _DUETODAY=$(task +READY +TODAY count)
+    _DUETOMRW=$(task +READY +TOMORROW count)
+    _PENDING=$(task +READY count)
     if [ $_OVERDUE -gt 0 ]
     then
         printf '%b' "${RED} $_OVERDUE"
