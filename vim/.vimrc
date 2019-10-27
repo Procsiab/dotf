@@ -1,3 +1,6 @@
+
+set nomodeline
+
 " Vundle plugin manager stuff
 set nocompatible
 filetype off
@@ -17,7 +20,6 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'atweiden/vim-betterdigraphs'
 
 " Utilities
 Plugin 'terryma/vim-multiple-cursors'
@@ -25,7 +27,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-startify'
-Plugin 'atweiden/vim-dragvisuals'
 
 " LaTeX plugins
 Plugin 'lervag/vimtex'
@@ -47,17 +48,17 @@ let g:gruvbox_italic = 1
 
 " Toggle night mode
 function NightModeToggle()
-	let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
-	if theme_name[1:-3] == 'Adwaita'
-		set background=light
-		highlight Normal ctermfg=white ctermbg=256
-		highlight CursorLine ctermbg=255
-		highlight CursorLineNr ctermbg=255
-	else
-		set background=dark
-	endif
+    let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
+    if theme_name[1:-3] == 'Adwaita'
+        set background=light
+        highlight Normal ctermfg=white ctermbg=256
+        highlight CursorLine ctermbg=255
+        highlight CursorLineNr ctermbg=255
+    else
+        set background=dark
+    endif
 endfunction
-nmap <Leader>nm mz:execute NightModeToggle()<CR>'z
+nmap <silent> <Leader>nm mz:execute NightModeToggle()<CR>'z
 call NightModeToggle()
 
 " Spell checking
@@ -65,24 +66,40 @@ setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-"====[Damien Conway's VIM addons]====
+"====[Damian Conway's VIM addons]====
+source ~/.vim/dconway/plugin/automkdir.vim
+source ~/.vim/dconway/plugin/betterdigraphs_utf8.vim
+source ~/.vim/dconway/plugin/dragvisuals.vim
+source ~/.vim/dconway/plugin/undowarnings.vim
 
 "====[Highlight the 80 column limit on overflowing character]
 highlight ColorColumn ctermbg=grey ctermfg=black
 call matchadd('ColorColumn', '\%81v', 100)
 
+"=====[ Smarter interstitial completions of identifiers ]
+augroup Undouble_Completions
+    autocmd!
+    autocmd CompleteDone *  call Undouble_Completions()
+augroup END
+
+function! Undouble_Completions ()
+    let col  = getpos('.')[2]
+    let line = getline('.')
+    call setline('.', substitute(line, '\(\.\?\k\+\)\%'.col.'c\zs\1\>', '', ''))
+endfunction
+
 "====[Blink current search match match in red]
 highlight WhiteOnRed ctermbg=red ctermfg=black
 
 function! HLNext (blinktime)
-let [bufnum, lnum, col, off] = getpos('.')
-let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-let target_pat = '\c\%#'.@/
-let ring = matchadd('WhiteOnRed', target_pat, 101)
-redraw
-exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-call matchdelete(ring)
-redraw
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
 endfunction
 
 nnoremap <silent> n n:call HLNext(0.3)<cr>
@@ -175,7 +192,7 @@ let g:airline_skip_empty_sections = 1
 " +-----------------------------------------------------------------------------+
 " | A | B |                     C                            X | Y | Z |  [...] |
 " +-----------------------------------------------------------------------------+
-let g:airline_section_z = "%p%% ☰ %l:%v" 
+let g:airline_section_z = "%p%% ☰ %l:%v"
 let g:airline_extensions = ['branch', 'tabline', 'ale']
 
 let g:airline#extensions#branch#empty_message = ''
@@ -227,29 +244,29 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the st
 " Toggle TAB to 4 spaces
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 function TabToggle()
-	if &expandtab
-		set softtabstop=4
-		set noexpandtab
-		echo "  TAB character mode"
-	else
-		set softtabstop=0
-		set expandtab
-		echo "  4-Spaces mode"
-	endif
+    if &expandtab
+        set softtabstop=4
+        set noexpandtab
+        echo "  TAB character mode"
+    else
+        set softtabstop=0
+        set expandtab
+        echo "  4-Spaces mode"
+    endif
 endfunction
 nmap <Leader>tt mz:execute TabToggle()<CR>'z
 
 " Toggle line numbers
 function NumToggle()
-	if &relativenumber
-		set norelativenumber
-		set nonumber
-		echo "  Line numbers hidden"
-	else
-		set relativenumber
-		set number
-		echo "  Line numbers visible"
-	endif
+    if &relativenumber
+        set norelativenumber
+        set nonumber
+        echo "  Line numbers hidden"
+    else
+        set relativenumber
+        set number
+        echo "  Line numbers visible"
+    endif
 endfunction
 nmap <Leader>nn mz:execute NumToggle()<CR>'z
 
