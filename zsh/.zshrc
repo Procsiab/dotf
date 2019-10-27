@@ -153,7 +153,8 @@ fi
 unsetopt correct_all
 
 # Enable 'thefuck' command correction
-alias shish='thefuck'
+alias shish='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1 | tail -n 1)) && eval $TF_CMD ; test -n "$TF_CMD" && print -s $TF_CMD'
+
 # Alias for sudo
 alias please='sudo'
 
@@ -187,3 +188,25 @@ function get_rofi_theme() {
     fi
 }
 alias rofi='rofi -normal-window -theme $(get_rofi_theme)'
+
+# Run a Git sparse clone, using git-sparse <remote url> <dest folder> [<path>, <path>, ...]
+function git-sparse() {
+    if [[ -z $1 || -z $3 ]]; then
+        echo 'Missimg arguments: git-sparse <remote url> <dest folder> [<path>, <path>, ...]'
+        exit 1
+    fi
+    if [[ -z $2 ]]; then
+        2=$(pwd)
+    fi
+    rurl="$1" localdir="$2" && shift 2
+    mkdir -p "$localdir"
+    cd "$localdir"
+    git init
+    git remote add -f origin "$rurl"
+    git config --local core.sparseCheckout true
+    # Loops over remaining args
+    for i; do
+        echo "$i" >> .git/info/sparse-checkout
+    done
+    git pull origin master
+}
