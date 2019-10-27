@@ -66,17 +66,21 @@ setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-"====[Damian Conway's VIM addons]====
+"====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
 source ~/.vim/dconway/plugin/betterdigraphs_utf8.vim
+source ~/.vim/dconway/plugin/comment_toggle.vim
 source ~/.vim/dconway/plugin/dragvisuals.vim
 source ~/.vim/dconway/plugin/undowarnings.vim
+
+"=====[Toggle comments for TeX files]
+autocmd FILETYPE tex let b:CT_EOL_COMMENT = '%'
 
 "====[Highlight the 80 column limit on overflowing character]
 highlight ColorColumn ctermbg=grey ctermfg=black
 call matchadd('ColorColumn', '\%81v', 100)
 
-"=====[ Smarter interstitial completions of identifiers ]
+"=====[Smarter interstitial completions of identifiers]
 augroup Undouble_Completions
     autocmd!
     autocmd CompleteDone *  call Undouble_Completions()
