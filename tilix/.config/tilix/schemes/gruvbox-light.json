@@ -1,11 +1,11 @@
 {
-    "background-color": "#f9f5d7",
+    "background-color": "#F8F8F5",
     "badge-color": "#FFFFFF",
     "bold-color": "#FFFFFF",
     "comment": "",
     "cursor-background-color": "#000000",
     "cursor-foreground-color": "#FFFFFF",
-    "foreground-color": "#3c3836",
+    "foreground-color": "#3C3836",
     "highlight-background-color": "#000000",
     "highlight-foreground-color": "#FFFFFF",
     "name": "gruvbox-light",
@@ -31,5 +31,5 @@
     "use-bold-color": false,
     "use-cursor-color": false,
     "use-highlight-color": false,
-    "use-theme-colors": true
+    "use-theme-colors": false
 }

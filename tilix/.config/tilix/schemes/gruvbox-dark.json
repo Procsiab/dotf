@@ -3,11 +3,11 @@
     "badge-color": "#FFFFFF",
     "bold-color": "#FFFFFF",
     "comment": "",
-    "cursor-background-color": "#000000",
-    "cursor-foreground-color": "#FFFFFF",
+    "cursor-background-color": "#FFFFFF",
+    "cursor-foreground-color": "#000000",
     "foreground-color": "#FBF1C7",
-    "highlight-background-color": "#000000",
-    "highlight-foreground-color": "#FFFFFF",
+    "highlight-background-color": "#FFFFFF",
+    "highlight-foreground-color": "#000000",
     "name": "gruvbox-dark",
     "palette": [
         "#282828",
@@ -31,5 +31,5 @@
     "use-bold-color": false,
     "use-cursor-color": false,
     "use-highlight-color": false,
-    "use-theme-colors": true
+    "use-theme-colors": false
 }
