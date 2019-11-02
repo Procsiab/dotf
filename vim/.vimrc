@@ -1,4 +1,4 @@
-
+" Avoid modeline vulnerability (https://medium.com/@soji256/which-versions-of-vim-are-affected-by-the-modeline-vulnerability-fd7660a9d069)
 set nomodeline
 
 " Vundle plugin manager stuff
@@ -136,7 +136,7 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 let g:vimtex_compiler_progname='nvr'
 
-" Ultrasnips specific settings
+" Ultisnips specific settings
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
