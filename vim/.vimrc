@@ -80,18 +80,6 @@ autocmd FILETYPE tex let b:CT_EOL_COMMENT = '%'
 highlight ColorColumn ctermbg=grey ctermfg=black
 call matchadd('ColorColumn', '\%81v', 100)
 
-"=====[Smarter interstitial completions of identifiers]
-augroup Undouble_Completions
-    autocmd!
-    autocmd CompleteDone *  call Undouble_Completions()
-augroup END
-
-function! Undouble_Completions ()
-    let col  = getpos('.')[2]
-    let line = getline('.')
-    call setline('.', substitute(line, '\(\.\?\k\+\)\%'.col.'c\zs\1\>', '', ''))
-endfunction
-
 "====[Blink current search match match in red]
 highlight WhiteOnRed ctermbg=red ctermfg=black
 
