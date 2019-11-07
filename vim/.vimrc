@@ -54,6 +54,12 @@ function NightModeToggle()
         highlight Normal ctermfg=white ctermbg=256
         highlight CursorLine ctermbg=255
         highlight CursorLineNr ctermbg=255
+        " Fix gutter column background in light theme
+        highlight SignColumn ctermbg=none
+        highlight GruvboxRedSign ctermbg=none
+        highlight GruvboxYellowSign ctermbg=none
+        highlight GruvboxAquaSign ctermbg=none
+        highlight GruvboxGreenSign ctermbg=none
     else
         set background=dark
     endif
