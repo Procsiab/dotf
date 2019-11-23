@@ -297,7 +297,7 @@ nnoremap <C-Right> :tabnext<CR>
 " Remap CTRL + t to toggle NerdTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
 
-" Remap CTRL + l, SHIFT + l to go to next/previous ALE warning/error
+" Go to next/previous ALE warning/error
 nmap <Leader>an :ALENext<CR>
 nmap <Leader>aN :ALEPrevious<CR>
 

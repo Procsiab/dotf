@@ -160,23 +160,28 @@ alias please='sudo'
 
 # Bind CTRL + G to Git add all, commit and push
 function git_prepare() {
-	if [ -n "$BUFFER" ];
-		then
-			BUFFER="git add -A && git commit -m \"$BUFFER\" && git push"
-	fi
-	if [ -z "$BUFFER" ];
-		then
-			BUFFER="git add -A && git commit -v && git push"
-	fi
-	zle accept-line
+    if [ -n "$BUFFER" ];
+        then
+            BUFFER="git add -A && git commit -m \"$BUFFER\" && git push"
+    fi
+    if [ -z "$BUFFER" ];
+        then
+            BUFFER="git add -A && git commit -v && git push"
+    fi
+    zle accept-line
 }
 zle -N git_prepare
 bindkey "^g" git_prepare
 
 # Function to generate printable random bytes
 function ndascii() {
-	if [ -z $1 ]; then 1=10; fi
-	tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
+    if [ -z $1 ]; then 1=10; fi
+    tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
+}
+
+# Function tu run tmux upon logging in with SSH
+function sshmux () {
+    /usr/bin/ssh -t $@ "tmux attach || tmux new"
 }
 
 # Fix rofi calls for wayland, and apply correct theme

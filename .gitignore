@@ -1,3 +1,5 @@
 vim/.config/nvim/spell/*
 vim/.vim/bundle/
 vim/.vim/dconway/
+taskwarrior/.task/completed.data
+taskwarrior/.task/pending.data
