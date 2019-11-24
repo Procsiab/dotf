@@ -232,7 +232,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_list_window_size = 5
 let g:ale_sign_warning = ' '
-let g:ale_sign_error = 'ﱥ '
+let g:ale_sign_error = ' '
 
 " Setup for bottom bar plugin
 set laststatus=2    " Always display the statusline in all windows
