@@ -168,6 +168,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.drone.yml'] = 'ﳣ '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.git'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitmodules'] = ' '
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Makefile'] = ' '
 
 " NerdTree Git plug-in specific settings
 let g:NERDTreeIndicatorMapCustom = {
@@ -205,7 +206,7 @@ let g:airline#extensions#tabline#tabs_label = 'tab'
 let g:airline#extensions#tabline#buffers_label = 'buf'
 
 let airline#extensions#ale#warning_symbol = ' '
-let airline#extensions#ale#error_symbol = 'ﱥ '
+let airline#extensions#ale#error_symbol = ' '
 let airline#extensions#ale#open_lnum_symbol = ' '
 let airline#extensions#ale#close_lnum_symbol = ''
 
