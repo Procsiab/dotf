@@ -40,6 +40,18 @@ function taskwarrior {
     else
         printf '%b' "${GREEN}"
     fi
+    printf '%b' "${WHITE}"
+}
+
+# Python virtual environment name segment
+# Also, tell the 'activate' script not to edit prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+short_pyenv () {
+    if [ -n "$VIRTUAL_ENV" ]
+    then
+        _venv="$(basename $VIRTUAL_ENV)" 
+        printf '%b' " ${_venv%%.*}"
+    fi
 }
 
 # Theme stuff:
@@ -48,7 +60,7 @@ MNML_USER_CHAR=
 MNML_ELLIPSIS_CHAR=…
 MNML_INSERT_CHAR="➤"
 # Components on the left prompt
-MNML_PROMPT=(taskwarrior mnml_pyenv mnml_status mnml_keymap)
+MNML_PROMPT=(taskwarrior mnml_status short_pyenv mnml_keymap)
 # Components on the right prompt
 MNML_RPROMPT=('mnml_cwd 2 0' mnml_git)
 # Components shown on info line
