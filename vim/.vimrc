@@ -72,6 +72,9 @@ setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+" Do not break words
+set tw=0 wrap linebreak
+
 "====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
 source ~/.vim/dconway/plugin/betterdigraphs_utf8.vim
@@ -292,8 +295,8 @@ nmap <Leader>s <Plug>(easymotion-overwin-f2)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Remap CTRL + ←/→ to switch between tabs
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-j> :tabprevious<CR>
+nnoremap <C-k> :tabnext<CR>
 
 " Remap CTRL + t to toggle NerdTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
