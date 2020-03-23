@@ -43,8 +43,13 @@ snippet snn "Section" w
 	$0
 endsnippet
 
-snippet ssnn "Sub-section" w
+snippet ssn "Sub-section" w
 \subsection{$1}
+	$0
+endsnippet
+
+snippet sssn "Sub sub-section" w
+\subsubsection{$1}
 	$0
 endsnippet
 
@@ -183,6 +188,10 @@ endsnippet
 
 snippet uuu "Text underline" iA
 \underline{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bbb "Text bold" iA
+\textbf{${1:${VISUAL}}}$0
 endsnippet
 
 snippet ali "Align" bA
