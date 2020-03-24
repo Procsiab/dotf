@@ -1,0 +1,30 @@
+
+snippet << "Element" bA
+<$1>
+	${0:${VISUAL}}
+</$1>
+endsnippet
+
+snippet <> "Oneline Element" bA
+<$1>${0:${VISUAL}}</$1>
+endsnippet
+
+snippet </ "Empty element" bA
+<${0:${VISUAL}} />
+endsnippet
+
+snippet "" "double quotes" iA
+"${1:${VISUAL}}"$0
+endsnippet
+
+snippet () "(...)" iA
+(${1:${VISUAL}})$0
+endsnippet
+
+snippet [] "[...]" iA
+[${1:${VISUAL}}]$0
+endsnippet
+
+snippet {} "{...}" iA
+{${1:${VISUAL}}}$0
+endsnippet
