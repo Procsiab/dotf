@@ -106,6 +106,15 @@ endfunction
 nnoremap <silent> n n:call HLNext(0.3)<cr>
 nnoremap <silent> N N:call HLNext(0.3)<cr>
 
+" Turn off search highlight with BackSpace
+nmap <silent> <BS> :nohlsearch<CR>
+
+" Use S to start a substitution
+nmap S :%s//g<LEFT><LEFT>
+
+" Use M to replace all search results
+nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+
 "====[Remap ; on : (useful on English keyboard layout)]
 nnoremap  ;  :
 
@@ -124,6 +133,13 @@ vmap  <expr>  <RIGHT>  DVB_Drag('right')
 vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
 vmap  <expr>  D        DVB_Duplicate()
+
+"====[Enable persistent undo inside single file]
+if has('persistent_undo')
+    set undolevels=5000
+    set undodir=$HOME/.VIM_UNDO_FILES
+    set undofile
+endif
 
 " Vimtex specific settings
 let g:tex_flavor='latex'
@@ -294,9 +310,17 @@ nmap <Leader>s <Plug>(easymotion-overwin-f2)
 " Move to word
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
-" Remap CTRL + ←/→ to switch between tabs
+" Remap CTRL + j/k to switch between tabs
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
+
+" Remap LEFT/RIGHT to cycle through quickfixes
+nmap <silent> <LEFT>  :cprev<CR>
+nmap <silent> <RIGHT> :cnext<CR>
+
+" Remap UP/DOWN to cycle through file list
+nmap <silent> <UP>   :prev<CR>
+nmap <silent> <DOWN> :next<CR>
 
 " Remap CTRL + t to toggle NerdTree plugin
 nnoremap <C-t> :NERDTreeToggle<CR>
