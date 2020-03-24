@@ -227,6 +227,3 @@ function git-sparse() {
         git pull origin master
         fi
 }
-
-# Get info about the covid19 epidemic in Italy
-alias covid="curl -s https://corona-stats.online/Italy | head -n4 | tail -n1 | awk -F'│' '{print \$9}' | tail -n1 | awk '{\$1=\$1};1' | cut -d ' ' -f 2"
