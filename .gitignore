@@ -1,5 +1,6 @@
 vim/.config/nvim/spell/*
 vim/.vim/bundle/
 vim/.vim/dconway/
+vim/.vim/vim_undo_files/
 taskwarrior/.task/completed.data
 taskwarrior/.task/pending.data

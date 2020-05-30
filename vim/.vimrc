@@ -20,6 +20,7 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
 
 " Utilities
 Plugin 'terryma/vim-multiple-cursors'
@@ -72,14 +73,12 @@ setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-" Do not break words
-set tw=0 wrap linebreak
-
 "====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
 source ~/.vim/dconway/plugin/betterdigraphs_utf8.vim
 source ~/.vim/dconway/plugin/comment_toggle.vim
 source ~/.vim/dconway/plugin/dragvisuals.vim
+source ~/.vim/dconway/plugin/file_templates.vim
 source ~/.vim/dconway/plugin/undowarnings.vim
 
 "=====[Toggle comments for TeX files]
@@ -137,9 +136,16 @@ vmap  <expr>  D        DVB_Duplicate()
 "====[Enable persistent undo inside single file]
 if has('persistent_undo')
     set undolevels=5000
-    set undodir=$HOME/.VIM_UNDO_FILES
+    set undodir=$HOME/.vim/vim_undo_files
     set undofile
 endif
+
+"====[Replacements for template files]
+let g:FileTemplatesInfo = {
+\        'FILEDIR'  : fnamemodify(expand('%:p:h'), ':t:r'),
+\        'AUTHOR'   : 'Lorenzo Prosseda',
+\        'EMAIL'    : 'lerokamut@gmail.com'
+\}
 
 " Vimtex specific settings
 let g:tex_flavor='latex'
@@ -172,6 +178,8 @@ let g:startify_lists = [
       \ ]
 let g:startify_files_number = 5
 let g:startify_session_number = 5
+let g:startify_session_dir = '~/.vim/vim_sessions'
+let g:startify_change_to_dir = 1
 
 " Devicons specific settings
 let g:webdevicons_enable_startify = 1
