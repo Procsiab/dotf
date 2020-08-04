@@ -225,5 +225,18 @@ function git-sparse() {
             echo "$i" >> .git/info/sparse-checkout
         done
         git pull origin master
+    fi
+}
+
+# open a formatted text file in a pager after converting it to Linux manpage format
+function mdless() {
+    if [[ -z $1 ]]; then
+        echo 'Missimg argument: mdless FILENAME [FORMAT]'
+    else
+        if [[ -z $2 ]]; then
+            pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less
+        else
+            pandoc -s -f $2 -t man $1 | groff -T utf8 -man | less
         fi
+    fi
 }

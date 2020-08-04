@@ -28,6 +28,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-startify'
+Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
 
 " LaTeX plugins
 Plugin 'lervag/vimtex'
@@ -52,6 +54,7 @@ function NightModeToggle()
     let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
     if theme_name[1:-3] == 'Adwaita'
         set background=light
+        let g:limelight_conceal_ctermfg = 251
         highlight Normal ctermfg=white ctermbg=256
         highlight CursorLine ctermbg=255
         highlight CursorLineNr ctermbg=255
@@ -63,6 +66,7 @@ function NightModeToggle()
         highlight GruvboxGreenSign ctermbg=none
     else
         set background=dark
+        let g:limelight_conceal_ctermfg = 237
     endif
 endfunction
 nmap <silent> <Leader>nm mz:execute NightModeToggle()<CR>'z
@@ -261,6 +265,27 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_list_window_size = 5
 let g:ale_sign_warning = ' '
 let g:ale_sign_error = ' '
+
+
+" 'Focus mode' with Goyo and Limelight
+let g:goyo_width = 80
+let g:limelight_default_coefficient = 0.7
+
+function! s:goyo_enter()
+    set noshowcmd
+    Limelight
+endfunction
+
+function! s:goyo_leave()
+    set showcmd
+    Limelight!
+    set list
+    call NightModeToggle()
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+map <leader>gy :set nolist<CR>:Goyo<CR>
 
 " Setup for bottom bar plugin
 set laststatus=2    " Always display the statusline in all windows
