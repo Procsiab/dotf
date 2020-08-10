@@ -274,6 +274,12 @@ let g:limelight_default_coefficient = 0.7
 function! s:goyo_enter()
     set noshowcmd
     Limelight
+    let theme_name = system("gsettings get org.gnome.desktop.interface gtk-theme")
+    if theme_name[1:-3] == 'Adwaita'
+        hi EndOfBuffer ctermfg=255
+    else
+        hi EndOfBuffer ctermfg=bg
+    endif
 endfunction
 
 function! s:goyo_leave()
@@ -281,6 +287,7 @@ function! s:goyo_leave()
     Limelight!
     set list
     call NightModeToggle()
+    hi EndOfBuffer ctermfg=fg
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
