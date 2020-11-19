@@ -202,7 +202,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitmodules'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Makefile'] = ' '
 
 " NerdTree Git plug-in specific settings
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : " ",
     \ "Staged"    : " ",
     \ "Untracked" : " ",
