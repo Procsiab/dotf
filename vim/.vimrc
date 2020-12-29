@@ -21,6 +21,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
+Plugin 'b4b4r07/vim-hcl'
 
 " Utilities
 Plugin 'terryma/vim-multiple-cursors'
@@ -76,6 +77,15 @@ call NightModeToggle()
 setlocal spell
 set spelllang=it,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" Custom file type mappings
+autocmd BufRead,BufNewFile Vagrantfile* set filetype=ruby
+autocmd BufRead,BufNewFile Dockerfile* set filetype=dockerfile
+autocmd BufRead,BufNewFile Containerfile* set filetype=dockerfile
+autocmd BufRead,BufNewFile *.service* set filetype=systemd
+autocmd BufRead,BufNewFile *.timer* set filetype=systemd
+autocmd BufRead,BufNewFile *.socket* set filetype=systemd
+autocmd BufRead,BufNewFile *.hcl* set filetype=hcl
 
 "====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
@@ -203,16 +213,16 @@ let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Makefile'] = ' '
 
 " NerdTree Git plug-in specific settings
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : " ",
-    \ "Staged"    : " ",
-    \ "Untracked" : " ",
-    \ "Renamed"   : "ﱴ ",
-    \ "Unmerged"  : "𥉉",
-    \ "Deleted"   : " ",
-    \ "Dirty"     : " ",
-    \ "Clean"     : " ",
-    \ 'Ignored'   : " ",
-    \ "Unknown"   : " "
+    \ "Modified"  : "",
+    \ "Staged"    : "",
+    \ "Untracked" : "",
+    \ "Renamed"   : "ﱴ",
+    \ "Unmerged"  : " ",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "",
+    \ "Clean"     : "",
+    \ 'Ignored'   : "",
+    \ "Unknown"   : ""
     \ }
 
 " Airline settings
