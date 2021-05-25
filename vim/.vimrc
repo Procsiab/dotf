@@ -16,7 +16,7 @@ Plugin 'morhetz/gruvbox'
 " Syntax and tools
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
@@ -73,6 +73,8 @@ endfunction
 nmap <silent> <Leader>nm mz:execute NightModeToggle()<CR>'z
 call NightModeToggle()
 
+" Add dotfile folder to runtimepath variable
+let &runtimepath=("/home/lero/dotf/vim/," . &runtimepath)
 " Spell checking
 setlocal spell
 set spelllang=it,en_gb
@@ -97,6 +99,7 @@ source ~/.vim/dconway/plugin/undowarnings.vim
 
 "=====[Toggle comments for TeX files]
 autocmd FILETYPE tex let b:CT_EOL_COMMENT = '%'
+autocmd FILETYPE java let b:CT_EOL_COMMENT = '//'
 
 "====[Highlight the 80 column limit on overflowing character]
 highlight ColorColumn ctermbg=grey ctermfg=black

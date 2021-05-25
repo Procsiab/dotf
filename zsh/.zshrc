@@ -50,7 +50,7 @@ short_pyenv () {
     if [ -n "$VIRTUAL_ENV" ]
     then
         _venv="$(basename $VIRTUAL_ENV)" 
-        printf '%b' " ${_venv%%.*}"
+        printf '%b' " $_venv"
     fi
 }
 
@@ -125,10 +125,12 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  fd
   gitfast
   git-flow
   gitignore
   python
+  safe-paste
   zsh-syntax-highlighting
 )
 
