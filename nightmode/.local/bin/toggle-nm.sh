@@ -15,7 +15,7 @@ if [ "$(gsettings get org.gnome.desktop.interface gtk-theme)" == "'Adwaita'" ]; 
     sed -i 's/-bg "#fbf1c7"/-bg "#282828"/g' ~/.config/zathura/zathurarc 
     sed -i 's/-fg "#282828"/-fg "#fbf1c7"/g' ~/.config/zathura/zathurarc 
     # Notify the user
-    notify-send "Night Mode" "Dark theme is enabled"
+    notify-send "Night Mode" "Dark theme is enabled" -i weather-clear-night -t 3000
 else
     # Toggle DARK theme
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
@@ -31,5 +31,5 @@ else
     sed -i 's/-bg "#282828"/-bg "#fbf1c7"/g' ~/.config/zathura/zathurarc 
     sed -i 's/-fg "#fbf1c7"/-fg "#282828"/g' ~/.config/zathura/zathurarc 
     # Notify the user
-    notify-send "Night mode" "Light theme is enabled"
+    notify-send "Night mode" "Light theme is enabled" -i weather-clear -t 3000
 fi

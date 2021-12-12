@@ -152,7 +152,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vi'
 else
   export EDITOR='nvim'
 fi
@@ -192,6 +192,12 @@ bindkey "^g" git_prepare
 function ndascii() {
     if [ -z $1 ]; then 1=10; fi
     tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
+}
+
+# generate printable characters from SOLO Key
+function ndsolo {
+    if [ -z $1 ]; then 1=10; fi
+    tr -dc '[:graph:]' < <(solo key rng raw) | tr -d \''\\'\` | head -c $1
 }
 
 # Function tu run tmux upon logging in with SSH
@@ -243,3 +249,8 @@ function mdless() {
         fi
     fi
 }
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)

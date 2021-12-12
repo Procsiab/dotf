@@ -1,4 +1,5 @@
 vim/.config/nvim/spell/*
+vim/spell/*
 vim/.vim/bundle/
 vim/.vim/dconway/
 vim/.vim/vim_undo_files/

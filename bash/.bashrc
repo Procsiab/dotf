@@ -13,3 +13,7 @@ fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# >>>> Vagrant command completion (start)
+. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
+# <<<<  Vagrant command completion (end)
