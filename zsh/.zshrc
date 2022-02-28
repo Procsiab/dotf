@@ -221,6 +221,14 @@ function mdless() {
     fi
 }
 
+function pdfgrep() {
+    if [[ -z $1 || -z $2 ]]; then
+        echo 'Missimg argument: pdfgrep PATH PATTERN'
+    else
+        find $1 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "'$2'"' \;
+    fi
+}
+
 # >>>> Vagrant command completion (start)
 fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
 compinit
