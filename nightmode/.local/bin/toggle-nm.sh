@@ -3,6 +3,8 @@
 if [ "$(gsettings get org.gnome.desktop.interface color-scheme)" == "'default'" ]; then
     # Toggle DARK variant
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+    # Light cursor theme (Oreo)
+#    gsettings set org.gnome.desktop.interface cursor-theme 'oreo_white_cursors'
     # Legacy app dark theme
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     # Change Tilix color palette
@@ -21,6 +23,8 @@ if [ "$(gsettings get org.gnome.desktop.interface color-scheme)" == "'default'" 
 else
     # Toggle LIGHT variant
     gsettings set org.gnome.desktop.interface color-scheme "default"
+    # Dark cursor theme (Oreo)
+#    gsettings set org.gnome.desktop.interface cursor-theme 'oreo_grey_cursors'
     # Legacy app light theme
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
     # Change Tilix color palette
