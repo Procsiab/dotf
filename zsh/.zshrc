@@ -167,8 +167,24 @@ function ndascii() {
 
 # generate printable characters from SOLO Key
 function ndsolo {
-    if [ -z $1 ]; then 1=10; fi
-    tr -dc '[:graph:]' < <(solo key rng raw) | tr -d \''\\'\` | head -c $1
+    BYTES=$1
+    DICT='[:graph:]'
+    if [[ "$1" == "-a" ]]
+    then
+        DICT='[:alnum:]'
+        if [ -z $2 ]
+        then
+            BYTES=10
+        else
+            BYTES=$2
+        fi
+    else
+        if [ -z $1 ]
+        then
+            BYTES=10
+        fi
+    fi
+    tr -dc $DICT < <(solo key rng raw) | tr -d \''\\'\` | head -c $BYTES
 }
 
 # Function tu run tmux upon logging in with SSH
