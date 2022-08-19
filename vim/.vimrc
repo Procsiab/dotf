@@ -5,40 +5,32 @@ set nomodeline
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/bundle')
 " Themes
-Plugin 'morhetz/gruvbox'
-
+Plug 'morhetz/gruvbox'
 " Syntax and tools
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'dense-analysis/ale'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-surround'
-Plugin 'b4b4r07/vim-hcl'
-
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'b4b4r07/vim-hcl'
 " Utilities
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mhinz/vim-startify'
-Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/goyo.vim'
-
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 " LaTeX plugins
-Plugin 'lervag/vimtex'
-Plugin 'sirver/ultisnips'
-
-" All of your Plugins must be added before the following line
-call vundle#end()
-filetype plugin indent on
+Plug 'lervag/vimtex'
+Plug 'sirver/ultisnips'
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 " Theme specific settings
 set t_Co=256
