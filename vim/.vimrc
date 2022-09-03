@@ -7,8 +7,9 @@ filetype off
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/bundle')
-" Themes
+" UI and theme
 Plug 'morhetz/gruvbox'
+Plug 'stevearc/dressing.nvim'
 " Syntax and tools
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -26,6 +27,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'stevearc/vim-arduino'
 " LaTeX plugins
 Plug 'lervag/vimtex'
 Plug 'sirver/ultisnips'
@@ -92,6 +94,10 @@ source ~/.vim/dconway/plugin/undowarnings.vim
 "=====[Toggle comments for TeX files]
 autocmd FILETYPE tex let b:CT_EOL_COMMENT = '%'
 autocmd FILETYPE java let b:CT_EOL_COMMENT = '//'
+autocmd FILETYPE java let b:CT_DELIMITED_COMMENT = { 'start': '/*', 'end': '*/' }
+autocmd FILETYPE arduino let b:CT_EOL_COMMENT = '//'
+autocmd FILETYPE arduino let b:CT_DELIMITED_COMMENT = { 'start': '/*', 'end': '*/' }
+autocmd FileType arduino :setlocal sw=2 ts=2 sts=2
 
 "====[Highlight the 80 column limit on overflowing character]
 highlight ColorColumn ctermbg=grey ctermfg=black
@@ -199,6 +205,7 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ino'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.drone.yml'] = 'ﳣ '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.git'] = ' '
@@ -271,6 +278,29 @@ let g:ale_list_window_size = 5
 let g:ale_sign_warning = ' '
 let g:ale_sign_error = ' '
 
+" Airline for Arduino files
+" my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
+function! ArduinoStatusLine()
+    let port = arduino#GetPort()
+    let board_info = split(g:arduino_board, ':')
+    let programmer_info = split(g:arduino_programmer, ':')
+    if empty(board_info)
+        let board_info = ['', 'N/A', 'N/A']
+    endif
+    if empty(programmer_info)
+        let programmer_info = ['', 'N/A']
+    endif
+    let line = ' ' . board_info[1] . ':' . board_info[2] . ' |  ' . programmer_info[1]
+    if !empty(port)
+        let line = line . ' |  ' . port . '@' . g:arduino_serial_baud . 'Bd'
+    endif
+    return line
+endfunction
+augroup ArduinoStatusLine
+    autocmd! * <buffer>
+    autocmd BufWinEnter <buffer> setlocal stl=%f\ %h%w%m%r\ %{ArduinoStatusLine()}\ %=\ %(%l,%c%V\ %=\ %P%)
+augroup END
+autocmd BufNewFile,BufRead *.ino let g:airline_section_x='%{ArduinoStatusLine()}'
 
 " 'Focus mode' with Goyo and Limelight
 let g:goyo_width = 80
