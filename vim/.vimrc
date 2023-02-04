@@ -1,6 +1,9 @@
 " Avoid modeline vulnerability (https://medium.com/@soji256/which-versions-of-vim-are-affected-by-the-modeline-vulnerability-fd7660a9d069)
 set nomodeline
 
+" Disable mouse support
+set mouse=
+
 " Vundle plugin manager stuff
 set nocompatible
 filetype off
