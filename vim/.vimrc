@@ -8,6 +8,9 @@ set mouse=
 set nocompatible
 filetype off
 
+" Should enable completion before loading ALE
+let g:ale_completion_enabled = 1
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/bundle')
 " UI and theme
@@ -280,6 +283,8 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_list_window_size = 5
 let g:ale_sign_warning = ' '
 let g:ale_sign_error = ' '
+" ALE autocomplete with <C-x><C-o>
+set omnifunc=ale#completion#OmniFunc
 
 " Airline for Arduino files
 " my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
