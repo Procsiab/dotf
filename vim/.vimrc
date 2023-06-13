@@ -25,6 +25,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'b4b4r07/vim-hcl'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'pearofducks/ansible-vim'
 " Utilities
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
@@ -88,6 +90,7 @@ autocmd BufRead,BufNewFile *.service* set filetype=systemd
 autocmd BufRead,BufNewFile *.timer* set filetype=systemd
 autocmd BufRead,BufNewFile *.socket* set filetype=systemd
 autocmd BufRead,BufNewFile *.hcl* set filetype=hcl
+autocmd BufRead,BufNewFile */ansible/*.yaml set filetype=yaml.ansible
 
 "====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
@@ -193,9 +196,9 @@ let g:gitgutter_sign_modified_removed = ' '
 
 " Startify specific settings
 let g:startify_lists = [
-      \ { 'type': 'files',     'header': ['    Recent']    },
-      \ { 'type': 'dir',       'header': ['    '. getcwd()] },
-      \ { 'type': 'sessions',  'header': ['   ﲵ Sessions']   },
+      \ { 'type': 'files',     'header': ['   󱑒 Recent']    },
+      \ { 'type': 'dir',       'header': ['    '. getcwd()] },
+      \ { 'type': 'sessions',  'header': ['   󱇧 Sessions']   },
       \ ]
 let g:startify_files_number = 5
 let g:startify_session_number = 5
@@ -209,28 +212,28 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ino'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = '󰊄'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ino'] = '󰘚 '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.drone.yml'] = 'ﳣ '
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.drone.yml'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.git'] = ' '
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ' '
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitmodules'] = ' '
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ' '
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitmodules'] = ' '
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['Makefile'] = ' '
 
 " NerdTree Git plug-in specific settings
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "",
-    \ "Staged"    : "",
-    \ "Untracked" : "",
-    \ "Renamed"   : "ﱴ",
-    \ "Unmerged"  : " ",
-    \ "Deleted"   : "",
+    \ "Staged"    : "󰻂",
+    \ "Untracked" : "",
+    \ "Renamed"   : "󰛿",
+    \ "Unmerged"  : "󰪡",
+    \ "Deleted"   : "",
     \ "Dirty"     : "",
     \ "Clean"     : "",
-    \ 'Ignored'   : "",
-    \ "Unknown"   : ""
+    \ 'Ignored'   : "",
+    \ "Unknown"   : "󰅚"
     \ }
 
 " Airline settings
@@ -272,9 +275,9 @@ let g:airline_symbols.readonly = ' RO'
 let g:airline_symbols.linenr = '☰ '
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.branch = ''
-let g:airline_symbols.paste = ' '
+let g:airline_symbols.paste = '󰆒 '
 let g:airline_symbols.spell = ' '
-let g:airline_symbols.notexists = '  '
+let g:airline_symbols.notexists = ' 󰎔 '
 let g:airline_symbols.dirty='  '
 let g:airline_symbols.whitespace = 'Ξ'
 
@@ -348,11 +351,11 @@ function TabToggle()
     if &expandtab
         set softtabstop=4
         set noexpandtab
-        echo "  TAB character mode"
+        echo "󰌒  TAB character mode"
     else
         set softtabstop=0
         set expandtab
-        echo "  4-Spaces mode"
+        echo "󰌒  4-Spaces mode"
     endif
 endfunction
 nmap <Leader>tt mz:execute TabToggle()<CR>'z
@@ -362,11 +365,11 @@ function NumToggle()
     if &relativenumber
         set norelativenumber
         set nonumber
-        echo "  Line numbers hidden"
+        echo "󰕅  Line numbers hidden"
     else
         set relativenumber
         set number
-        echo "  Line numbers visible"
+        echo "󰕅  Line numbers visible"
     endif
 endfunction
 nmap <Leader>nn mz:execute NumToggle()<CR>'z
@@ -411,6 +414,9 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " Go to next/previous ALE warning/error
 nmap <Leader>an :ALENext<CR>
 nmap <Leader>aN :ALEPrevious<CR>
+
+" Toggle indent guides
+nmap <leader>ii :IndentBlanklineToggle<CR>
 
 " Remap <leader>l + 1, 2, … to spell languages
 nnoremap <leader>l0 :set spelllang=it,en_gb<CR>:echo "  All languages enabled"<CR>

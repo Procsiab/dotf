@@ -34,18 +34,18 @@ function taskwarrior {
     _PENDING=$(task +READY count)
     if [ $_OVERDUE -gt 0 ]
     then
-        printf '%b' "${RED} $_OVERDUE"
+        printf '%b' "${RED}󰃴 $_OVERDUE"
     elif [ $_DUETODAY -gt 0 ]
     then
-        printf '%b' "${YELLOW} $_DUETODAY"
+        printf '%b' "${YELLOW}󰭧 $_DUETODAY"
     elif [ $_DUETOMRW -gt 0 ]
     then
-        printf '%b' "${BLUE} $_DUETOMRW"
+        printf '%b' "${BLUE}󰃰 $_DUETOMRW"
     elif [ $_PENDING -gt 0 ]
     then
         printf '%b' "${WHITE} $_PENDING"
     else
-        printf '%b' "${GREEN}"
+        printf '%b' "${GREEN}󰃯"
     fi
     printf '%b' "${WHITE}"
 }
