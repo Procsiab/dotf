@@ -107,9 +107,9 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  cp
   fd
   gitfast
-  git-flow
   gitignore
   python
   safe-paste
@@ -143,6 +143,8 @@ alias shish='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(al
 alias please='sudo'
 # Alias for neovim
 alias vim='nvim'
+# Alias for git diff HEAD
+alias gdh='git diff HEAD -- .'
 
 # Bind CTRL + G to Git add all, commit and push
 function git_prepare() {
