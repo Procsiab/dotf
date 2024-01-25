@@ -91,6 +91,10 @@ autocmd BufRead,BufNewFile *.timer* set filetype=systemd
 autocmd BufRead,BufNewFile *.socket* set filetype=systemd
 autocmd BufRead,BufNewFile *.hcl* set filetype=hcl
 autocmd BufRead,BufNewFile */ansible/*.yaml set filetype=yaml.ansible
+autocmd BufRead,BufNewFile *.container set filetype=systemd
+autocmd BufRead,BufNewFile *.kube set filetype=systemd
+autocmd BufRead,BufNewFile *.network set filetype=systemd
+autocmd BufRead,BufNewFile *.volume set filetype=systemd
 
 "====[Damian Conway's VIM add-ons]====
 source ~/.vim/dconway/plugin/automkdir.vim
