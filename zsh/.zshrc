@@ -11,6 +11,9 @@ fi
 # Include user folder NPM folder into system PATH
 export PATH=~/.npm-global/bin:/home/lero/.local/bin:$PATH
 
+# Include path to Flutter SDK
+export PATH=/home/lero/Documents/sources/flutter/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 # Set the terminal color variable
@@ -108,7 +111,6 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   cp
-  fd
   gitfast
   gitignore
   python
@@ -163,8 +165,24 @@ bindkey "^g" git_prepare
 
 # Function to generate printable random bytes
 function ndascii() {
-    if [ -z $1 ]; then 1=10; fi
-    tr -dc '[:graph:]' < /dev/urandom | tr -d \''\\'\` | head -c $1
+    BYTES=$1
+    DICT='[:graph:]'
+    if [[ "$1" == "-a" ]]
+    then
+        DICT='[:alnum:]'
+        if [ -z $2 ]
+        then
+            BYTES=10
+        else
+            BYTES=$2
+        fi
+    else
+        if [ -z $1 ]
+        then
+            BYTES=10
+        fi
+    fi
+    tr -dc $DICT < /dev/urandom | tr -d \''\\'\` | head -c $BYTES
 }
 
 # generate printable characters from SOLO Key
@@ -192,6 +210,14 @@ function ndsolo {
 # Function tu run tmux upon logging in with SSH
 function sshmux () {
     /usr/bin/ssh -t $@ "tmux attach || tmux new"
+}
+
+# Functions to run SCP/SSH without checking or saving the host fingerprint and asking for password
+function scpforget () {
+    /usr/bin/scp -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $@
+}
+function sshforget () {
+    /usr/bin/ssh $@ -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 }
 
 # Fix rofi calls for wayland, and apply correct theme
